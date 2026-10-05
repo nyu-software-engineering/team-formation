@@ -7,7 +7,7 @@ name = "pypi"
 pandas = "*"
 numpy = "*"
 ipykernel = "*"
-nltk = "*"
+pulp = "<3,>=2.7"
 
 [dev-packages]
 ipykernel = "*"
