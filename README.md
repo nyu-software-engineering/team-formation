@@ -69,6 +69,16 @@ Example header row:
 email,project,own,project_title,choice
 ```
 
+## Student data
+
+Student data is never shown in the notebook, so it is safe to commit with its outputs. Anything that identifies a student (emails, votes as typed, GitHub usernames) is only written to CSV files in `data/`, which git ignores. The notebook refuses to save student data to a file git would not ignore. The notebook itself shows only counts and per-project totals.
+
+Besides the output file, each run saves these files for review, named with `REVIEW_FILE_PREFIX`:
+
+- `..._proposals.csv`: forks whose project name may be wrong, and projects with more than one fork
+- `..._unmatched_votes.csv`: votes that did not match a proposal, with a suggested match
+- `..._votes.csv`: each student's votes as typed and as matched to proposals
+
 ## Grouping logic
 
 1. **Choose teams.** Which projects run, and who is on each, is chosen all at once as an integer program: every student is on at most one of the projects they voted for, every project that runs has between `MIN_TEAM_SIZE` and `MAX_TEAM_SIZE` members, and the total score is as high as possible. A first, second, or third choice is worth `CHOICE_WEIGHTS` points, plus `OWN_PROPOSAL_BONUS` if it is the student's own proposal.
@@ -77,4 +87,4 @@ email,project,own,project_title,choice
 
 ## Setup
 
-Install dependencies into a virtual environment with [pipenv](https://pipenv.pypa.io/en/latest/), e.g. `pipenv install` and `pipenv shell`. Place the input data file into the `data` directory. Open the `project-groups.ipynb` file in a Jupyter notebook environment, update the file names and dates in the **Settings** cells for the current semester, and execute all code. Review the output of the *Review* cells, update the proposals and aliases files as needed, and run again.
+Install dependencies into a virtual environment with [pipenv](https://pipenv.pypa.io/en/latest/), e.g. `pipenv install` and `pipenv shell`. Place the input data file into the `data` directory. Open the `project-groups.ipynb` file in a Jupyter notebook environment, update the file names and dates in the **Settings** cells for the current semester, and execute all code. Review the files listed by the *Review* cells, update the proposals and aliases files as needed, and run again.
